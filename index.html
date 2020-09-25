@@ -1,0 +1,49 @@
+<script>
+    var playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+    function game() {
+        let computerSelection = "not selected.";
+        const arr =  ['rock', 'paper', "scissors"];
+        function computerPlay() {
+            let num = (Math.round(Math.random() * 2));
+            computerSelection = arr[num];
+            return computerSelection;
+        }
+        var playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+        computerPlay();
+        console.log(playerSelection);
+        console.log(computerSelection);
+
+
+        let playerScore = 0;
+        let computerScore = 0;
+        for (let i=0; playerScore<5 || computerScore<5; i++) {
+            function playRound(playerSelection, computerSelection) {
+                playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+                if (playerSelection === arr[0] && computerSelection === arr[0] || playerSelection === arr[1] && computerSelection === arr[1] || playerSelection === arr[2] && computerSelection === arr[2]) {
+                    console.log("tie");
+                    playRound();
+                } else if (playerSelection === arr[0] && computerSelection === arr[2] || playerSelection === arr[1] && computerSelection === arr[0] || playerSelection === arr[2] && computerSelection === arr[1]) {
+                    playerScore++;
+                    playRound();
+                } else if (playerSelection === arr[0] && computerSelection === arr[1] || playerSelection === arr[1] && computerSelection === arr[2] || playerSelection === arr[2] && computerSelection === arr[0]) {
+                    computerScore++;
+                    playRound();
+                }
+                
+                }
+            }
+        if (playerScore === 5) {
+            return "You win!"
+        } else if (computerScore === 5) {
+            return "You lose."
+        }
+}
+    console.log(game());
+</script>
+<html>
+    <head>
+        <body>
+
+        </body>
+    </head>
+</html>
