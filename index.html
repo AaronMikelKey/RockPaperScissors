@@ -3,6 +3,8 @@
     let playerSelection = "not selected.";
     const arr =  ['rock', 'paper', "scissors"]; //arrary used to compare answers
 
+
+    
     //function for computer answer
     function computerPlay() {
         let num = (Math.round(Math.random() * 2));
@@ -10,25 +12,36 @@
         return computerSelection;
     }
     //function for player answer
-    function playerPlay() {
-        playerSelection = prompt("Rock, paper, or scissors?").toLowerCase();
+    function playerPlay(button) {
+        playerSelection = button;
+        console.log(playerSelection);
         return playerSelection;
     }
 
     let playerScore = 0;
     let computerScore = 0;
 
-    function playRound() {
-        playerPlay();
+    function newGame() {
+        playerScore = 0;
+        computerScore = 0;
+        document.getElementById("playerScore").innerHTML = playerScore;
+        document.getElementById("computerScore").innerHTML = computerScore;
+        game();
+    }
+
+    function playRound(button) {
+        playerSelection = button;
         computerPlay();
         if (playerSelection === arr[0] && computerSelection === arr[0] || playerSelection === arr[1] && computerSelection === arr[1] || playerSelection === arr[2] && computerSelection === arr[2]) {
             console.log("tie");
             console.log("Player: " + playerScore + " Computer: " + computerScore);
         } else if (playerSelection === arr[0] && computerSelection === arr[2] || playerSelection === arr[1] && computerSelection === arr[0] || playerSelection === arr[2] && computerSelection === arr[1]) {
             playerScore++;
+            document.getElementById("playerScore").innerHTML = playerScore;
             console.log("Player: " + playerScore + " Computer: " + computerScore);
         } else if (playerSelection === arr[0] && computerSelection === arr[1] || playerSelection === arr[1] && computerSelection === arr[2] || playerSelection === arr[2] && computerSelection === arr[0]) {
             computerScore++;
+            document.getElementById("computerScore").innerHTML = computerScore;
             console.log("Player: " + playerScore + " Computer: " + computerScore);
         }
         }
@@ -44,7 +57,6 @@
         }
     }
     }
-    console.log(game());
 </script>
 <html>
     <head>
@@ -59,18 +71,19 @@
 
             </div>
             <div class="button-list">
-                <button value="Rock" class="btn">Rock</button>
-                <button value="Paper" class="btn">Paper</button>
-                <button value="Scissors" class="btn">Scissors</button>
+                <button value="Rock" class="btn" onClick="playRound('rock')">Rock</button>
+                <button value="Paper" class="btn" onClick="playRound('paper')">Paper</button>
+                <button value="Scissors" class="btn" onClick="playRound('scissors')">Scissors</button>
             </div>
             <div class="scoreboard">
                 <div>Player Score:
-                    <div class="playerScore">0</div>
+                    <div class="playerScore" id="playerScore">0</div>
                 </div>
                 <div>Computer Score :
-                    <div class="computerScore">5</div>
+                    <div class="computerScore" id="computerScore">0</div>
                 </div>
             </div>
+            <button class="btn" id="newGame">New Game</button>
         </div>
     </body>
 </html>
